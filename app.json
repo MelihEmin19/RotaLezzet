@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "RotaLezzet",
+    "slug": "RotaLezzet",
+    "scheme": "rotalezzet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "RotaLezzet, tur sirasinda konumunu gostermek ve bir sonraki duraga yonlendirmek icin konumunu kullanir."
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyD0TBR2jus586wbMU71Nq2u93uoi5g31Z0"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD0TBR2jus586wbMU71Nq2u93uoi5g31Z0"
+        }
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "RotaLezzet, tur sirasinda konumunu gostermek ve bir sonraki duraga yonlendirmek icin konumunu kullanir."
+        }
+      ]
+    ]
+  }
+}
