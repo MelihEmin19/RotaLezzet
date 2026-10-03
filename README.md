@@ -1,181 +1,63 @@
-# RotaLezzet
+# RotaLezzet 🌍🧭
 
-Turistik şehirlerde **kişiselleştirilmiş gezi rotası** sunan çapraz platform mobil uygulama (iOS & Android). Kullanıcı şehir ve tercihlerini seçer; uygulama durakları sıralar, haritada gösterir ve tur modu ile gezmeyi destekler.
-
-> **Özel depo:** Bu proje GitHub'da private tutulur. `.env` ve API anahtarları repoya eklenmez.
-
----
-
-## Özellikler
-
-| Alan | Açıklama |
-|------|----------|
-| **Kimlik** | Kayıt, giriş, e-posta doğrulama (OTP / mail linki), şifre sıfırlama, misafir modu |
-| **Şehir & arama** | Google Places tabanlı şehir autocomplete (`city-autocomplete`, `city-resolve`) |
-| **Otomatik rota** | Gün sayısı, ilgi alanı (tarih, doğa, gastronomi, alışveriş), tempo → `get-smart-itinerary` |
-| **Özel rota** | Şehir içi manuel mekan ekleme, isteğe bağlı en yakın komşu (NN) sıralama |
-| **Harita & tur** | `react-native-maps`, rota çizgisi, «Tura Başla», sıradaki durağa harici navigasyon |
-| **Profil** | Kayıtlı rotalar, favoriler, profil düzenleme; rotayı manuel kaydetme |
-| **Ek** | Tahmini bütçe, PDF/metin paylaşım, offline rota önbelleği, TR/EN (i18next), admin paneli |
+**Proje Tanımı:**
+RotaLezzet, turistik şehirlere seyahat eden kullanıcıların planlama sürecindeki karmaşayı ortadan kaldıran akıllı bir gezi rotası uygulamasıdır. Kullanıcının belirlediği gün sayısı, seyahat temposu ve ilgi alanlarına (tarih, doğa, gastronomi vb.) göre yapay zeka destekli, coğrafi olarak en verimli (en yakın komşu) rotayı otomatik olarak oluşturur. Ziyaretçiler bu sayede saatlerce araştırma yapmadan, zamanlarını ve bütçelerini optimize ederek şehri bir rehber eşliğinde geziyormuş gibi keşfedebilirler.
 
 ---
 
-## Teknolojiler
+## 📸 Görsel Kanıt (Ekran Görüntüleri)
 
-**İstemci:** React Native 0.81 · Expo SDK 54 · TypeScript · React Navigation · TanStack Query · NativeWind  
+> **Not:** Aday değerlendirme süreci için uygulamanın çalıştığını gösteren görseller aşağıya eklenecektir.
 
-**Bulut:** Supabase (PostgreSQL, Auth, RLS) · Edge Functions (Deno) · Google Places API (New)
-
-```
-Mobil uygulama
-    │  HTTPS (apikey / JWT)
-    ▼
-Supabase Edge Functions  ──►  Google Places API
-    │
-    ▼
-PostgreSQL (profiles, favorites, saved_itineraries, …)
-```
+*(Buraya uygulamanın harita ekranını, rota oluşturma ekranını ve profil ekranını gösteren 2-3 adet ekran görüntüsü veya 10-15 saniyelik bir GIF ekleyin.)*
+- `![Harita Ekranı](docs/screens/map.png)`
+- `![Rota Sonucu](docs/screens/itinerary.png)`
 
 ---
 
-## Proje yapısı
+## 🚀 Mevcut Özellikler
+- **Kimlik Doğrulama:** Kayıt, giriş, e-posta doğrulama (OTP), şifre sıfırlama ve misafir modu.
+- **Akıllı Rota Üretimi:** Seçilen şehir, gün sayısı, ilgi alanı ve tempoya göre optimize edilmiş rota oluşturma.
+- **Harita Entegrasyonu:** `react-native-maps` ile rotayı haritada çizme (Polyline) ve mekanları işaretleme.
+- **Özel Rota & Düzenleme:** Sürükle-bırak (Drag & Drop) ile rota sıralamasını değiştirme ve manuel mekan ekleme.
+- **Navigasyon Desteği:** "Tura Başla" ile harici harita uygulamalarına (Apple Maps / Google Maps) yönlendirme.
+- **Çoklu Dil Desteği:** i18next ile Türkçe ve İngilizce dil seçenekleri.
+- **Çevrimdışı Önbellekleme:** Yerel depolama ile rotaların internet olmadan da görüntülenebilmesi.
 
-```
-RotaLezzet/
-├── App.tsx                 # Kök bileşen, auth bootstrap
-├── src/
-│   ├── screens/            # Welcome, CitySelect, Preferences, ItineraryResult, …
-│   ├── services/           # auth, edgeFetch, citySearch, savedItineraries, …
-│   ├── hooks/              # useAuth, useAuthDeepLink
-│   ├── navigation/
-│   └── locales/            # tr.json, en.json
-├── supabase/
-│   ├── functions/          # city-autocomplete, get-smart-itinerary, …
-│   └── migrations/
-├── docs/
-│   └── SUPABASE_KURULUM.md # Backend ve Auth kurulum adımları
-└── scripts/
-    └── check-backend.mjs   # Edge + Google bağlantı testi
-```
+## 🛠 Kullanılan Teknolojiler
+- **Frontend (Mobil):** React Native (v0.81), Expo SDK 54, JavaScript/TypeScript
+- **Stil & UI:** NativeWind (Tailwind CSS), Görsel bileşenler için Bottom-Sheet
+- **Backend & Veritabanı:** Supabase (PostgreSQL, Kimlik Doğrulama, Row Level Security)
+- **Serverless / API:** Supabase Edge Functions (Deno), Google Places API (New)
+- **Harita:** React Native Maps, Google Maps API (Android için)
+- **Durum Yönetimi:** TanStack Query (React Query)
 
 ---
 
-## Gereksinimler
-
-- **Node.js** `>=20.19.4 <21` (`.nvmrc` ile uyumlu)
-- [Expo Go](https://expo.dev/go) (fiziksel cihaz testi)
-- [Supabase](https://supabase.com) projesi
-- Google Cloud’da **Places API (New)** etkin
+## ⏳ Gelecekte Eklenecek Özellikler (Planlananlar)
+- **Ödeme Entegrasyonu:** Premium özellikler (çoklu günlük planlar, sınırsız şehir geçmişi) için in-app purchase (RevenueCat) veya Stripe entegrasyonu.
+- **Sosyal Paylaşım:** Oluşturulan rotaların PDF formatında indirilmesi veya doğrudan link ile başkalarıyla paylaşılması.
+- **Grup Planlaması:** 2 veya daha fazla kullanıcının aynı rota üzerinde ortaklaşa düzenleme yapabilmesi.
+- **Push Bildirimleri:** Gezi sırasındaki duraklar ve zaman yönetimi için akıllı hatırlatıcılar.
 
 ---
 
-## Kurulum
+## 💻 Kurulum Adımları
 
-### 1. Depoyu klonlayın
+Projeyi lokalde test etmek ve ayağa kaldırmak için terminalde aşağıdaki 3 temel komutu çalıştırmanız yeterlidir:
 
 ```bash
-git clone https://github.com/MelihEmin19/RotaLezzet.git
-cd RotaLezzet
+# 1. Depoyu klonlayın ve klasöre girin
+git clone https://github.com/MelihEmin19/RotaLezzet.git && cd RotaLezzet
+
+# 2. Gerekli bağımlılıkları yükleyin
 npm install
-```
 
-### 2. Ortam değişkenleri
-
-Proje kökünde `.env` oluşturun (örnek: `.env.example`):
-
-```env
-EXPO_PUBLIC_SUPABASE_URL=https://PROJE_ID.supabase.co
-EXPO_PUBLIC_SUPABASE_ANON_KEY=anon_key_buraya
-```
-
-> Google Places anahtarı **istemcide değil**; Supabase Edge Function secret olarak tanımlanır (`GOOGLE_PLACES_API_KEY`).
-
-### 3. Supabase
-
-1. SQL migration dosyalarını `supabase/migrations/` altından çalıştırın.
-2. Edge Functions deploy edin (`--no-verify-jwt`: `city-autocomplete`, `city-resolve`, `place-autocomplete`, `get-smart-itinerary`, `photo-proxy`).
-3. Secret: `GOOGLE_PLACES_API_KEY`.
-4. Auth redirect: `rotalezzet://**`, `exp://**`.
-
-Ayrıntılı adımlar: **[docs/SUPABASE_KURULUM.md](docs/SUPABASE_KURULUM.md)**
-
-Backend testi:
-
-```bash
-node scripts/check-backend.mjs
-```
-
-Beklenen: `google status 200` ve `city-autocomplete status 200`.
-
-### 4. Uygulamayı çalıştırma
-
-```bash
+# 3. Expo geliştirici sunucusunu başlatın
 npx expo start --clear
 ```
 
-Farklı Wi‑Fi / mobil veri kullanıyorsanız:
-
-```bash
-npx expo start --clear --tunnel
-```
-
-Expo Go ile QR kodu okutun. `.env` değiştirdikten sonra dev server’ı yeniden başlatın.
+> **Önemli Not:** Projenin çalışabilmesi için kök dizinde `.env` dosyasının oluşturulması ve Supabase (URL, Anon Key) ayarlarının yapılandırılması gerekmektedir. Google Places API anahtarı istemcide (mobil tarafta) tutulmaz, güvenlik sebebiyle Supabase Edge Functions tarafında secret olarak barındırılır. (Uygulama derlemesi ve Google Haritalar entegrasyonu için `app.json` dosyasına yalnızca platform kısıtlaması yapılmış harita anahtarı eklenir.)
 
 ---
-
-## Edge Functions
-
-| Fonksiyon | Açıklama |
-|-----------|----------|
-| `city-autocomplete` | Şehir arama önerileri |
-| `city-resolve` | Seçilen şehrin koordinat / timezone |
-| `place-autocomplete` | Mekan arama (özel rota) |
-| `get-smart-itinerary` | Tercihlere göre rota üretimi |
-| `photo-proxy` | İmzalı Places foto URL |
-| `admin-dashboard` | Admin istatistikleri (JWT + admin rolü) |
-
-Genel çağrılar: `src/services/edgeFetch.ts` (`invokePublicEdgeFunction` / `invokeAuthedEdgeFunction`).
-
----
-
-## Ekranlar (özet)
-
-1. **LanguageSelect** → **Welcome** → Kayıt / Giriş / Misafir  
-2. **CitySelect** → **Preferences** → **ItineraryResult** (harita + program)  
-3. **Profile** — kayıtlı rotalar, **CustomItineraryBuilder**  
-4. **VerifyOtp** / **ResetPassword** — auth akışları  
-
----
-
-## NPM komutları
-
-| Komut | Açıklama |
-|-------|----------|
-| `npm start` | Expo dev server |
-| `npm run android` | Android emülatör / cihaz |
-| `npm run ios` | iOS simülatör (macOS) |
-| `npm run web` | Web önizleme |
-
----
-
-## Güvenlik notları
-
-- `.env` ve `supabase/.temp/` `.gitignore` içindedir; commit etmeyin.
-- `EXPO_PUBLIC_*` değerleri istemci paketine gömülür; yalnızca anon key kullanın.
-- Google / service role anahtarlarını yalnızca Supabase secret veya sunucu tarafında tutun.
-- `app.json` içindeki harita anahtarı production için kısıtlanmalıdır.
-
----
-
-## İlgili dokümanlar
-
-- [docs/SUPABASE_KURULUM.md](docs/SUPABASE_KURULUM.md) — Supabase, Google Places, Auth  
-- [BUSINESS.md](BUSINESS.md) — Mağaza yayını, maliyet ve iş notları (teknik olmayan)
-
----
-
-## Lisans
-
-Bu depo özel (private) bir akademik / kişisel projedir. İzinsiz kopyalama veya dağıtım yapılmamalıdır.
-
-**Geliştirici:** Melih Emin Karakökçek · Manisa Celal Bayar Üniversitesi
+**Geliştirici:** Melih Emin Karakökçek

@@ -19,7 +19,7 @@
         "NSLocationWhenInUseUsageDescription": "RotaLezzet, tur sirasinda konumunu gostermek ve bir sonraki duraga yonlendirmek icin konumunu kullanir."
       },
       "config": {
-        "googleMapsApiKey": "AIzaSyD0TBR2jus586wbMU71Nq2u93uoi5g31Z0"
+        "googleMapsApiKey": "YOUR_GOOGLE_MAPS_API_KEY"
       }
     },
     "android": {
@@ -29,7 +29,7 @@
       },
       "config": {
         "googleMaps": {
-          "apiKey": "AIzaSyD0TBR2jus586wbMU71Nq2u93uoi5g31Z0"
+          "apiKey": "YOUR_GOOGLE_MAPS_API_KEY"
         }
       },
       "edgeToEdgeEnabled": true,
