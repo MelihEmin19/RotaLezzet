@@ -5,16 +5,6 @@ RotaLezzet, turistik şehirlere seyahat eden kullanıcıların planlama sürecin
 
 ---
 
-## 📸 Görsel Kanıt (Ekran Görüntüleri)
-
-> **Not:** Aday değerlendirme süreci için uygulamanın çalıştığını gösteren görseller aşağıya eklenecektir.
-
-*(Buraya uygulamanın harita ekranını, rota oluşturma ekranını ve profil ekranını gösteren 2-3 adet ekran görüntüsü veya 10-15 saniyelik bir GIF ekleyin.)*
-- `![Harita Ekranı](docs/screens/map.png)`
-- `![Rota Sonucu](docs/screens/itinerary.png)`
-
----
-
 ## 🚀 Mevcut Özellikler
 - **Kimlik Doğrulama:** Kayıt, giriş, e-posta doğrulama (OTP), şifre sıfırlama ve misafir modu.
 - **Akıllı Rota Üretimi:** Seçilen şehir, gün sayısı, ilgi alanı ve tempoya göre optimize edilmiş rota oluşturma.
